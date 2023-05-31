@@ -1,0 +1,28 @@
+﻿@model PCOS.Models.Test
+@{
+   ViewData["Title"] = "Test";
+}
+
+<div class="text-left">
+   <form method='post'>
+      <label>Ваше имя</label>
+      <input name="name"/>
+      <br/>
+      @foreach (var question in Model.Questions)
+      {
+         <label><b>@question.Text</b></label>
+         foreach (var answer in question.Answers)
+         {
+            <p>@answer.Text</p>
+         }
+         <select name="answers">
+            @foreach (var answer in question.Answers)
+            {
+               <option value="@answer.Number">@answer.Number</option>
+            }
+         </select>
+         <br/>
+      }
+      <input type="submit" value="Send"/>
+   </form>
+</div>

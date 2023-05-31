@@ -1,0 +1,43 @@
+﻿@model List<PCOS.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="text-center">
+    <table>
+        <tr>
+            <th>Name</th>
+            @foreach (var topic in Model[0].TopicsPoints)
+            {
+                <th>
+                    @topic.Key
+                </th>
+            }
+            <th>Sum</th>
+        </tr>
+         @foreach (var student in Model)
+            {
+                <tr>
+                    <th>@student.Name</th>
+                    @foreach (var topic in student.TopicsPoints)
+                    {
+                        <th>
+                            @topic.Value
+                        </th>
+                    }
+                    <th>
+                        @{
+                            var summ = 0;
+                            foreach (var topic in student.TopicsPoints)
+                            {
+                                summ += topic.Value;
+                            }
+                        }
+                        @summ
+                    </th>
+                </tr>
+            }
+    </table>
+   
+</div>
